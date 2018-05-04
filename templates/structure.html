@@ -1,0 +1,44 @@
+{{define "structure"}}
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes, minimal-ui">
+  <meta name="theme-color" content="#1b202a" />
+  <meta name="description" content="{{template `title`}}" />
+
+  <link rel="shortcut icon" href="/public/favicon.ico">
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Overpass|Overpass+Mono'>
+  <link rel="stylesheet" href="/public/teamsilverblue-style.css">
+  <link rel="stylesheet" href="/public/teamsilverblue-style-print.css" media="print">
+  <title>{{template "title"}}</title>
+</head>
+
+<body>
+  <div class="wrapper">
+  <header>
+    <a class="logo" href="/"><img alt="Silverblue logo" src="/public/silverblue-logo.svg"></a>
+    <nav>
+        <a href="https://teamsilverblue.org">Home</a>
+        <a href="/">Start</a>
+    </nav>
+  </header>
+
+  <main>
+  {{template "body" .}}
+  </main>
+
+</div>
+<footer>
+    <nav>
+      <a href="https://twitter.com/teamsilverblue"><svg class="icon"><use href="/public/svg-sprites.svg#twitter" /></svg>Twitter</a>
+      <a href="https://github.com/teamsilverblue"><svg class="icon"><use href="/public/svg-sprites.svg#github" /></svg>Github</a>
+    </nav>
+    <p id="copyright">
+      &copy; 2018 Team Silverblue.<br>A Fedora initiative.
+    </p>
+  </footer>
+</body>
+</html>
+{{end}}
