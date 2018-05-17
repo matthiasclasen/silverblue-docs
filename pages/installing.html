@@ -1,0 +1,167 @@
+<!-- See structure.html for the template names used here and their position in the layout. -->
+{{define "title"}}Team Silverblue &mdash; Documentation{{end}}
+
+{{define "body"}}
+<article>
+  <h1>Installing Silverblue</h1>
+
+  <p>The preferred way to install Silverblue is with the Fedora MediaWriter application.
+  See the <a href="https://teamsilverblue.org/download">Download</a> page for details on
+  how to create a USB stick to install Silverblue.</p>
+
+  <p><i>NOTE:  The following instructions are written in detail, assuming that you have
+  never installed Fedora before.  If you have experience using or installing Fedora, you
+  may be able to skip much of these instructions.</i></p>
+
+  <h2>Before You Begin</h2>
+
+  <p>Before you start the installation process, you should answer the following questions:</p>
+
+  <ul>
+    <li>Do you want to retain any existing data on your system?</li>
+      <ul>
+        <li>If yes, you should consider using the <a href="#manual-partition">manual partitioning</a>
+            method during the install process.</li>
+        <li>Alternatively, if your system has an existing Fedora install on it, you could
+            use the <a href="#side-by-side">side-by-side</a> install method.</li>
+      </ul>
+    <li>Do you want to do a fresh install and do not care about retaining any existing
+        data on your system?</li>
+      <ul>
+        <li>If yes, you should consider using the <a href="#automatic-partition">automatic partitioning</a>
+            method during the install process.  This is the easiest way to get Silverblue
+            installed on your system.</li>
+        <li>You may still use the <a href="#manual-partition">manual partitioning</a> method
+            during the install process, but it will require some additional steps.</li>
+     </ul>
+  </ul>
+
+  <h2>Starting the Install</h2>
+
+  <p>After you have successfully created your USB stick, you'll need to boot your system
+  from the USB stick.  Depending on your system, you might get lucky and it will boot from
+  USB automatically.  Otherwise, you'll need to figure out how to access the boot menu of
+  your system's BIOS/UEFI and select the USB stick as the boot device.</p>
+
+  <p>You should see a Fedora 28 installation screen that is identical to the Fedora 28
+  Workstation installer:</p>
+
+  <img src="/public/install/faw-boot-menu.png" alt="Fedora 28 Installer Menu"/>
+
+  <p>From this menu, you can choose to test the media to ensure that the USB stick was
+  created successfully.  Or launch right into the installer if you are feeling confident.
+  For the purposes of this guide, we know our USB stick is working properly, so we'll
+  start the installer.  You may see some messages fly past your screen that look like
+  this:</p>
+
+  <img src="/public/install/faw-boot-output.png" alt="Fedora Installer Services Output" />
+
+  <p>Eventually, the graphical installer should start and you'll be presented with the
+  options to select the language you wish to use during the install:</p>
+
+  <img src="/public/install/faw-boot-welcome.png" alt="Fedora Installer Language Selection" />
+
+  <p>After selecting your language, the next screen of the installer allows us to make
+  additional selections regarding the installer.  We can configure the keyboard layout,
+  installed language support, date and time, networking, and partitioning.  In this guide
+  we are only going to focus on the partitioning because of certain restrictions in this
+  area when using Silverblue.  However, if you have questions about some of the options
+  of this part (or any part) of the installer, you can consult the
+  <a href="https://docs.fedoraproject.org/f28/install-guide/install/Installing_Using_Anaconda.html">Fedora Installation Guide</a>.</p>
+
+  <p>On this screen, you should notice that there is a warning on the bottom of the screen
+  that says you need to complete the items marked with the warning icon before we can begin
+  the actual install.  Additionally, the 'Begin Installation' button is greyed out.  The
+  item that needs to be completed is the partitioning and we can start that process by
+  selecting the "Installation Destination" item with the warning icon next to it:</p>
+
+  <img src="/public/install/faw-summary-one.png" alt="Fedora Installtion Summary" />
+
+  <p>After choosing the "Installation Destination", you are brought to a screen where
+  you have to decide if you want to use automatic partitioning or manual partitioning.
+  If you have existing data on your disk and want to preserve it, you'll want to
+  <a href="#manual-partition">manually partition</a> your disk(s).  However, if you
+  are comfortable with losing any and all existing data on your disk(s), you can choose
+  <a href="#automatic-partition">automatic partitioning</a>:<p>
+
+  <img src="/public/install/faw-storage-start.png" alt="Fedora Installation Destination" />
+
+  <h2 id="automatic-partition">Automatic Partitioning</h2>
+
+  <p>If you choose automatic partitioning, your job is almost done.  Select the disk you
+  want to install onto (in this guide we have only a single disk).  Check the radio button
+  that says 'Automatic' and click the big blue button at the top that says 'Done'.</p>
+
+  <p>If your disk already has partitions on it, you'll be presented with a dialog to
+  'reclaim' space.  This means you are going choose which partitions can be deleted, so
+  that the disk can be re-partitioned from scratch.</p>
+
+  <img src="/public/install/faw-storage-reclaim.png" alt="Reclaim Disks Dialog" />
+
+  <p>In this guide, we are going to delete all the existing partitions so that we can
+  use the entirety of the disk for the install.  This is easily done with the aptly
+  named 'Delete All' button.</p>
+
+  <img src="/public/install/faw-storage-reclaim-two.png" alt="Delete All Partitions" />
+
+  <p>And then confirm that you are going to delete all the partitions by clicking the
+  'Reclaim space' button:</p>
+
+  <img src="/public/install/faw-storage-reclaim-delete-all.png" alt="Confirming Delete All Partitions" />
+
+  <p>With your partitioning choice complete, the installer brings you back to the
+  installation summary screen and the big blue 'Begin Installation' button is beckoning
+  you to click it.  Once you click the button, your disk(s) will be altered and all data
+  on the disk(s) will be lost.</p>
+
+  <img src="/public/install/faw-summary-two.png" alt="Ready to Begin Installation" />
+
+  <p>Once you have started the install process, you can move on to the next phase
+  where you will <a href="#user-config">configure users</a>.</p>
+
+  <h2 id="manual-partition">Manual Partitioning</h2>
+
+  <p>Coming Soon...</p>
+
+  <h2 id="side-by-side">Installing Side-by-Side on an Existing System</h2>
+
+  <p>There will be detailed instructions on how to install Silverblue along side an
+  existing Fedora installation in the near future.  If you are would like to explore
+  this method now, you can use <a href="https://pagure.io/workstation-ostree-config/blob/master/f/README-install-inside.md">these instructions</a>
+  from the <code>workstation-ostree-config</code> repo.</p>
+
+  <h2 id="user-config">User Configuration</h2>
+
+  <p>As the installer churns away, you are presented with a screen where you can configure
+  the root password and create one or more regular users:</p>
+
+  <img src="/public/install/faw-progress-one.png" alt="Configuring Users" />
+
+  <p>Firstly, let's configure a root password.  Be sure to choose a safe and strong
+  password that contains a mix of upper and lower case characters, numbers, and
+  symbols.  The installer has a nice indicator during this root password process
+  that estimates the strength of your password; aim for creating a password that is
+  "Strong":</p>
+
+  <img src="/public/install/faw-root-pw-two.png" alt="Choosing a Strong Root Password" />
+
+  <p>Then we can create a normal, unprivileged user which we will use as our day
+  to day login.  The same suggestions about creating a password for this user applies.
+  Additionally, we can choose to make the user an administrator on the system, which
+  grants the username the ability to use the <code>sudo</code> command to elevate their
+  privileges:</p>
+
+  <img src="/public/install/faw-user-two.png" alt="Creating an Unprivileged User" />
+
+  <p>Once we have the root password configured and an unprivileged user configured, we
+  just sit back and wait for the installer to complete:</p>
+
+  <img src="/public/install/faw-progress-two.png" alt="Waiting for the Installer to Complete" />
+
+  <p>Eventually, the installer will finish and you will be presented with a big, blue
+  button that says 'Reboot'.  This will (obviously) reboot your system and you'll be
+  able to login to your Silverblue installation for the first time!</p>
+
+</article>
+{{end}}
+
