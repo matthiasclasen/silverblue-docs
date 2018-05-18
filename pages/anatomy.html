@@ -13,12 +13,19 @@
   in their traditional, expected place:
   <ul>
     <li>/home → /var/home</li>
-    <li>/etc → /var/etc</li>
-    <li>/mnt → /var/mnt</li>
     <li>/opt → /var/opt</li>
+    <li>/srv → /var/srv</li>
+    <li>/root → /var/roothome</li>
+    <li>/usr/local → /var/usrlocal</li>
+    <li>/mnt → /var/mnt</li>
+    <li>/tmp → /sysroot/tmp</li>
   </ul>
   and so on. If you have a separate home partition on your system, it should be
   mounted on /var/home.</p>
+
+  <p>For a more detailed explanation of the system layout, refer to the excellent
+  <a href="https://ostree.readthedocs.io/en/latest/manual/adapting-existing/">libostree documentation</a>
+  on this subject.</a>
 
   <h2>Packaging: ostree, rpms, flatpaks and containers</h2>
 
