@@ -121,7 +121,87 @@
 
   <h2 id="manual-partition">Manual Partitioning</h2>
 
-  <p>Coming Soon...</p>
+  <p>When choosing to manually partition your system, you need to be aware of certain
+  restrictions specific to Silverblue.  Due to how the operating system and filesystem
+  are managed via libostree, only certain mount points can be created during the install
+  process.  These mount points are limited to <code>/boot</code>, <code>/var</code>,
+  subdirectories under <code>/var</code>, and the root filesystem.</p>
+
+  <p>Unfortunately, the installer (which is shared with vanilla Fedora Workstation) is
+  not aware of these restrictions specific to Silverblue and will happily accept your
+  custom partitions without error.  Only when you try to boot your system will you
+  be made aware that you have made a mistake.</p>
+
+  <p>With those restrictions in mind, let's try to manually partition our system.  The
+  first screen you'll see is the "Installation Destination" screen.  From here, you can
+  select which disk(s) to use for the install and choose the partitioning method.  For this
+  guide, we only have a single disk, but you might have more than one disk in your system.
+  In order to select the manual parition method, click the radio button labeled "Custom".</p>
+
+  <img src="/public/install/faw-storage-custom-one.png" alt="Selecting Custom Partitioning" />
+
+  <p>This will launch you into the "Manual Partioning" screen, which gives you a minimal
+  overview of the existing storage configuration.  In order to see all of the partitions
+  on your disk, you should click the arrow next to the "Unknown" disk.</p>
+
+  <img src="/public/install/faw-manual-partition-two.png" alt="Viewing Existing Partitions" />
+
+  <p>Now we can see that we have three existing partitions on the disk: two <code>ext4</code>
+  partitions and a swap partition.  At this point, you should (hopefully!) be able to recognize
+  your existing partitions and make sure they remain intact if you wanted to keep the existing
+  data on your disk.  But for this guide, we do not want to preserve any data, so we are
+  going to start deleting all of our existing partitions to start fresh.  We start by selecting
+  the first <code>ext4</code> partition in the list labeled "fedora-root".  Then we click the
+  button that looks like a dash ("-") to mark the partition to be delete.  This brings up
+  a prompt asking you to confirm that you want to delete the partition.</p>
+
+  <img src="/public/install/faw-manual-partition-three.png" alt="Confirm Deletion of Partition" />
+
+  <p>Repeat this process for all the partitions that you want to delete.  In this guide, we
+  have removed all the paritions from the system and have a blank disk to work with.</p>
+
+  <img src="/public/install/faw-manual-partition-four.png" alt="All Partitions Removed" />
+
+  <p>We'll create our first partition by clicking on the button that looks like a plus sign
+  ("+").  This first partition will be our <code>/boot</code> where critical pieces of software
+  required to boot your system (like the <code>initramfs</code> and <code>vmlinuz</code>
+  executable).  It doesn't need to be very large, so we set the size for 500M.</p>
+
+  <img src="/public/install/faw-manual-partition-boot.png" alt="Creating the /boot Partition" />
+
+  <p>The only other partition we absolutely need in order for the system to install successfully
+  is the root partition ("/").  But we have the flexibility to create additional partitions
+  that can include <code>/var</code> and subdirectories under <code>/var</code>.  For the
+  purposes of this guide, we'll create a <code>/var/home</code> which is where all the user's
+  home directories live.  (There is a symlink from <code>/home</code> to <code>/var/home</code>
+  on Silverblue systems.)</p>
+
+  <img src="/public/install/faw-manual-partition-varhome.png" alt="Creating /var/home Partition" />
+
+  <p>You can create additional parititions such as <code>/var/log</code> or <code>/var/lib/containers</code>,
+  but for this guide, we will move on to creating the root partition.  We'll finish this part of
+  the install process by creating the root partition for our system.  We can leave the size field
+  blank during this step and the installer will automatically use the remaining free space on the
+  disk for the partition.</p>
+
+  <img src="/public/install/faw-manual-partition-root.png" alt="Creating Root Partition" />
+
+  <p>With all the partitions created, we can inspect the final configuration before proceeding.
+  It's worth noting here that the default partitioning scheme uses <a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_%28Linux%29">LVM</a>
+  as the default partitioning scheme with an <code>ext4</code> filesystem.  You can change this
+  during this partitioning phase to use standard partitions or an <code>xfs</code> filesystem,
+  but that is outside the scope of this guide.</p>
+
+  <img src="/public/install/faw-manual-partition-complete.png" alt="Partitioning Complete" />
+
+  <p>After confirming your partitioning choices by clicking the big, blue "Done" button at
+  the top of the screen, you are brought back to the "Installation Summary" screen.  Here you
+  have a chance to inspect your choices one last time before starting the actual installation
+  proper.  Once you click the big, blue "Begin Installation" button, your disk(s) will be
+  altered and any data on them may be lost forever.</p>
+
+  <p>Once you have started the installer, you can move on to the <a href="#user-config">User Configuration</a>
+  section of this guide.</p>
 
   <h2 id="side-by-side">Installing Side-by-Side on an Existing System</h2>
 
