@@ -1,0 +1,66 @@
+<!-- See structure.html for the template names used here and their position in the layout. -->
+{{define "title"}}Team Silverblue &mdash; Documentation{{end}}
+
+{{define "body"}}
+<article>
+  <h1>Upgrades and Rollbacks</h1>
+
+  <h2>Upgrading the OS</h2>
+
+  <p>To get updates for the OS, you can run: <em>rpm-ostree upgrade</em>.
+  Starting with Fedora 28, gnome-software will also offer OS updates on Silverblue systems.
+  Note that due to the atomic nature of the OS, you will have to reboot into the new image
+  to have the updates take effect.</p>
+
+  <p>If you just want to check for available updates, this command will do so:
+  <em>rpm-ostree upgrade --check</em>. Starting with Fedora 28, gnome-software will also
+  notify you about OS updates, just like it does on the traditional workstation.</p>
+
+  <h2>Change to a new OS release</h2>
+
+  <p>You can run: <em>rpm-ostree rebase</em> and give it the name of the new OS.
+  The process is very similar to a system update: the new OS is downloaded and installed
+  in the background, and you just boot into it when it is ready.</p>
+
+  <p>Just like system updates, rebases can be reversed: the previous deployment is still
+  available, and you can boot back into it if there are any problems with the new OS.</p>
+
+  <p>We plan to have gnome-software offer the same functionality in Fedora 29 as well.</p>
+
+  <h2>Rolling Back the OS</h2>
+
+  <p>rpm-ostree keeps two deployments around, which both have an entry in the grub menu.
+  When you boot, you can choose the other entry to boot into the previous deployment.</p>
+
+  <p>To permanently switch back to the previous deployment, use the <em>rpm-ostree rollback</em>
+  command.</p>
+
+  <h2>Update applications</h2>
+
+  <p>To update your Flatpak applications, you can run: <em>flatpak update</em>.
+  gnome-software will also offer Flatpak application updates. Note that Flatpaks are
+  independent of the base system, so you can install updates without a reboot, and just
+  restart affected applications afterwards to get the new version.</p>
+
+  <p>This command will let you check if application updates are available:
+  <em>flatpak remote-ls --updates</em>. if you add the -d option, it will generate
+  detailed information about the available updates:
+
+<pre>
+$ flatpak remote-ls --updates -d
+Ref                                                     Origin             Commit       Installed size Download size
+app/com.valvesoftware.Steam/x86_64/stable               flathub            effe21b05e42   6.3 MB         4.1 MB
+app/org.blender.Blender/x86_64/stable                   flathub            ac90294a1cc3 225.4 MB        79.6 MB
+runtime/org.freedesktop.Platform.VAAPI.Intel/x86_64/1.6 flathub            818a1504fad1   8.7 MB         2.7 MB
+runtime/org.gnome.Platform/x86_64/3.24                  flathub            6132154b089b 739.5 MB       281.4 MB
+runtime/org.gnome.Platform/x86_64/3.26                  flathub            be9fe7b43711 782.5 MB       296.8 MB
+runtime/org.gnome.Sdk/x86_64/3.26                       flathub            c62d5ddf669a   1.6 GB       582.9 MB
+runtime/org.kde.Platform/x86_64/5.9                     flathub            ea891f4a918f   1.1 GB       391.0 MB
+app/org.gnome.Builder/x86_64/master                     gnome-apps-nightly b14e6c0fc6c3 105.0 MB        35.4 MB
+</pre>
+
+  gnome-software will also notify you about application updates, just like it does
+  on the normal workstation.</p>
+
+</article>
+{{end}}

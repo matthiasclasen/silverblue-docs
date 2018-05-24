@@ -1,0 +1,26 @@
+<!-- See structure.html for the template names used here and their position in the layout. -->
+{{define "title"}}Team Silverblue &mdash; Documentation{{end}}
+
+{{define "body"}}
+<article>
+  <h1>Miscellany</h1>
+
+  <h2>Using VPN Connections</h2>
+
+  <p>/etc is not part of the immutable OS image, so you can just copy
+  files into /etc/NetworkManager/system-connections (or let NetworkManager
+  store them there when you recreate your connections). Certificates
+  in /etc/pki need to be handled similarly.</p>
+
+  <h3>Playing YouTube videos</h3>
+
+  <p>Firefox is included in the OS image for now. Until that changes, getting it to
+  play videos works the same way as it does for the regular Workstation: find a package
+  with the needed codecs, and install it. The one difference is that you use
+  <em>rpm-ostree install</em> instead of dnf install.</p>
+
+  <p>An alternative solution is to install the nightly firefox, which is available
+  as a Flatpak <a href="https://firefox-flatpak.mojefedora.cz/org.mozilla.FirefoxNightly.flatpakref">here</a>.</p>
+
+</article>
+{{end}}
