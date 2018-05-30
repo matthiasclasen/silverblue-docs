@@ -1,0 +1,52 @@
+Some input for a future buildah cheat sheet, in the same style as our
+flatpak and rpm-ostree cheat sheets:
+
+
+Create a working container from a fedora base image:
+# buildah from fedora
+
+Create a working container from scratch:
+# buildah from scratch
+
+Options for from command:
+--name NAME   specify the name of the new working container
+--user USER   for running as a user
+--volume SOURCE:DEST:OPTIONS   for bind mounts
+--net "container"|"host"  for network access
+--pid "container"|"host"  for pid namespace
+
+Create a working container from a dockerfile:
+# buildah bud -f FILE CONTEXT
+
+Example:
+# buildah bud -f Dockerfile.simple .
+
+Enumerate existing containers:
+# buildah containers
+
+Delete a working container:
+# buildah rm CONTAINER_ID
+
+Mount a working container filesystem:
+# buildah mount CONTAINER_ID
+
+Unmount a working container filesystem:
+# buildah umount CONTAINER_ID
+
+Run a working container:
+# buildah run CONTAINER_ID COMMAND
+
+Options for run command:
+--user USER   for running as a user
+--volume SOURCE:DEST:OPTIONS   for bind mounts
+--net "container"|"host"  for network access
+--pid "container"|"host"  for pid namespace
+
+Example:
+# buildah run --user mclasen \
+      --volume /home/mclasen:/home/mclasen:rw \
+      --volume /run/user/1000:/run/user/1000 \
+      --volume /etc/foo:/etc/foo:ro \
+      --net "host" \
+      fedora-working-container sh
+
