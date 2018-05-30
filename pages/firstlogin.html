@@ -69,6 +69,12 @@
   rpm-ostree will keep it up-to-date for you and recreate the layer when you install a newer OS
   image.</p>
 
+  <p>rpm-ostree does not currently have an equivalent to the <em>dnf search</em> command for finding
+  packages in the configured repositories. As a workaround, you can run dnf in a temporary container
+  like this:</p>
+
+  <p>$ sudo podman run --rm fedora:28 dnf search <i>TERM</i></p>
+
   <h2>Enabling third-party RPM Repositories</h2>
 
   <p>Silverblue installs a number of yum repositories containing useful software that is not
